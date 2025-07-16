@@ -1,0 +1,8 @@
+/home/ubuntu/logger_project/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/logger_project/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/logger_project/build/logger/CMakeFiles/logger.dir
+/home/ubuntu/logger_project/build/logger/CMakeFiles/edit_cache.dir
+/home/ubuntu/logger_project/build/logger/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/logger_project/build/app/CMakeFiles/logger_app.dir
+/home/ubuntu/logger_project/build/app/CMakeFiles/edit_cache.dir
+/home/ubuntu/logger_project/build/app/CMakeFiles/rebuild_cache.dir

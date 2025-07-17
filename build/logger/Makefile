@@ -130,6 +130,30 @@ logger/fast:
 	cd /home/ubuntu/logger_project/build && $(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/build
 .PHONY : logger/fast
 
+file_logger_output.o: file_logger_output.cpp.o
+.PHONY : file_logger_output.o
+
+# target to build an object file
+file_logger_output.cpp.o:
+	cd /home/ubuntu/logger_project/build && $(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/file_logger_output.cpp.o
+.PHONY : file_logger_output.cpp.o
+
+file_logger_output.i: file_logger_output.cpp.i
+.PHONY : file_logger_output.i
+
+# target to preprocess a source file
+file_logger_output.cpp.i:
+	cd /home/ubuntu/logger_project/build && $(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/file_logger_output.cpp.i
+.PHONY : file_logger_output.cpp.i
+
+file_logger_output.s: file_logger_output.cpp.s
+.PHONY : file_logger_output.s
+
+# target to generate assembly for a file
+file_logger_output.cpp.s:
+	cd /home/ubuntu/logger_project/build && $(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/file_logger_output.cpp.s
+.PHONY : file_logger_output.cpp.s
+
 logger.o: logger.cpp.o
 .PHONY : logger.o
 
@@ -154,6 +178,30 @@ logger.cpp.s:
 	cd /home/ubuntu/logger_project/build && $(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/logger.cpp.s
 .PHONY : logger.cpp.s
 
+socket_logger_output.o: socket_logger_output.cpp.o
+.PHONY : socket_logger_output.o
+
+# target to build an object file
+socket_logger_output.cpp.o:
+	cd /home/ubuntu/logger_project/build && $(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o
+.PHONY : socket_logger_output.cpp.o
+
+socket_logger_output.i: socket_logger_output.cpp.i
+.PHONY : socket_logger_output.i
+
+# target to preprocess a source file
+socket_logger_output.cpp.i:
+	cd /home/ubuntu/logger_project/build && $(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/socket_logger_output.cpp.i
+.PHONY : socket_logger_output.cpp.i
+
+socket_logger_output.s: socket_logger_output.cpp.s
+.PHONY : socket_logger_output.s
+
+# target to generate assembly for a file
+socket_logger_output.cpp.s:
+	cd /home/ubuntu/logger_project/build && $(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/socket_logger_output.cpp.s
+.PHONY : socket_logger_output.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -163,9 +211,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... logger"
+	@echo "... file_logger_output.o"
+	@echo "... file_logger_output.i"
+	@echo "... file_logger_output.s"
 	@echo "... logger.o"
 	@echo "... logger.i"
 	@echo "... logger.s"
+	@echo "... socket_logger_output.o"
+	@echo "... socket_logger_output.i"
+	@echo "... socket_logger_output.s"
 .PHONY : help
 
 

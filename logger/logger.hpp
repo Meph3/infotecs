@@ -2,34 +2,35 @@
 #define LOGGER_HPP
 
 #include <string>
-#include <fstream>
-#include <ctime>
+#include <memory>
 
 // Уровни важности логов
 enum class LogLevel {
-    INFO,     // Информационное сообщение
-    WARNING,  // Предупреждение
-    ERROR     // Ошибка
+    INFO,
+    WARNING,
+    ERROR
 };
 
-// Класс Logger реализует запись сообщений в лог-файл с уровнями важности и временной меткой
+// Абстрактный интерфейс вывода логов
+class LoggerOutput {
+public:
+    virtual ~LoggerOutput() = default;
+    virtual void write(const std::string& message) = 0;
+};
+
+// Основной класс логгера
 class Logger {
 public:
-
-    Logger(const std::string& filename, LogLevel defaultLevel);
-
-    ~Logger();
-
+    Logger(std::shared_ptr<LoggerOutput> output, LogLevel defaultLevel);
     void log(const std::string& message, LogLevel level);
-
     void setLogLevel(LogLevel newLevel);
 
 private:
-    std::ofstream logFile;  // Файловый поток для логирования
-    LogLevel currentLevel;  // Текущий уровень логирования
+    LogLevel currentLevel;
+    std::shared_ptr<LoggerOutput> output;
 
     std::string getTimeStamp();
-
     std::string levelToString(LogLevel level);
 };
-#endif
+
+#endif // LOGGER_HPP

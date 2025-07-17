@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/logger_app.dir/main.cpp.o -o logger_app  ../logger/liblogger.a 
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/logger_app.dir/main.cpp.o -o logger_app  ../logger/liblogger.a 

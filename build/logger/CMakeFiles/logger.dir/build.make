@@ -83,17 +83,49 @@ logger/CMakeFiles/logger.dir/logger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logger.dir/logger.cpp.s"
 	cd /home/ubuntu/logger_project/build/logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/logger_project/logger/logger.cpp -o CMakeFiles/logger.dir/logger.cpp.s
 
+logger/CMakeFiles/logger.dir/file_logger_output.cpp.o: logger/CMakeFiles/logger.dir/flags.make
+logger/CMakeFiles/logger.dir/file_logger_output.cpp.o: /home/ubuntu/logger_project/logger/file_logger_output.cpp
+logger/CMakeFiles/logger.dir/file_logger_output.cpp.o: logger/CMakeFiles/logger.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/logger_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object logger/CMakeFiles/logger.dir/file_logger_output.cpp.o"
+	cd /home/ubuntu/logger_project/build/logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT logger/CMakeFiles/logger.dir/file_logger_output.cpp.o -MF CMakeFiles/logger.dir/file_logger_output.cpp.o.d -o CMakeFiles/logger.dir/file_logger_output.cpp.o -c /home/ubuntu/logger_project/logger/file_logger_output.cpp
+
+logger/CMakeFiles/logger.dir/file_logger_output.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/logger.dir/file_logger_output.cpp.i"
+	cd /home/ubuntu/logger_project/build/logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/logger_project/logger/file_logger_output.cpp > CMakeFiles/logger.dir/file_logger_output.cpp.i
+
+logger/CMakeFiles/logger.dir/file_logger_output.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logger.dir/file_logger_output.cpp.s"
+	cd /home/ubuntu/logger_project/build/logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/logger_project/logger/file_logger_output.cpp -o CMakeFiles/logger.dir/file_logger_output.cpp.s
+
+logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o: logger/CMakeFiles/logger.dir/flags.make
+logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o: /home/ubuntu/logger_project/logger/socket_logger_output.cpp
+logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o: logger/CMakeFiles/logger.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/logger_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o"
+	cd /home/ubuntu/logger_project/build/logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o -MF CMakeFiles/logger.dir/socket_logger_output.cpp.o.d -o CMakeFiles/logger.dir/socket_logger_output.cpp.o -c /home/ubuntu/logger_project/logger/socket_logger_output.cpp
+
+logger/CMakeFiles/logger.dir/socket_logger_output.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/logger.dir/socket_logger_output.cpp.i"
+	cd /home/ubuntu/logger_project/build/logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/logger_project/logger/socket_logger_output.cpp > CMakeFiles/logger.dir/socket_logger_output.cpp.i
+
+logger/CMakeFiles/logger.dir/socket_logger_output.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/logger.dir/socket_logger_output.cpp.s"
+	cd /home/ubuntu/logger_project/build/logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/logger_project/logger/socket_logger_output.cpp -o CMakeFiles/logger.dir/socket_logger_output.cpp.s
+
 # Object files for target logger
 logger_OBJECTS = \
-"CMakeFiles/logger.dir/logger.cpp.o"
+"CMakeFiles/logger.dir/logger.cpp.o" \
+"CMakeFiles/logger.dir/file_logger_output.cpp.o" \
+"CMakeFiles/logger.dir/socket_logger_output.cpp.o"
 
 # External object files for target logger
 logger_EXTERNAL_OBJECTS =
 
 logger/liblogger.a: logger/CMakeFiles/logger.dir/logger.cpp.o
+logger/liblogger.a: logger/CMakeFiles/logger.dir/file_logger_output.cpp.o
+logger/liblogger.a: logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o
 logger/liblogger.a: logger/CMakeFiles/logger.dir/build.make
 logger/liblogger.a: logger/CMakeFiles/logger.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/logger_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library liblogger.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/logger_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library liblogger.a"
 	cd /home/ubuntu/logger_project/build/logger && $(CMAKE_COMMAND) -P CMakeFiles/logger.dir/cmake_clean_target.cmake
 	cd /home/ubuntu/logger_project/build/logger && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/logger.dir/link.txt --verbose=$(VERBOSE)
 

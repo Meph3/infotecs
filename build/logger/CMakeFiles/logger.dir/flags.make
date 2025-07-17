@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/ubuntu/logger_project/logger -I/home/ubuntu/logger_project/app
 
-CXX_FLAGS = -fPIC
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -fPIC
 

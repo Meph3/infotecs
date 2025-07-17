@@ -1,40 +1,32 @@
 #include "logger.hpp"
+#include <ctime>
 #include <iostream>
+#include <sstream>
 
-// Конструктор: открывает файл и устанавливает уровень логирования
-Logger::Logger(const std::string& filename, LogLevel defaultLevel)
-    : currentLevel(defaultLevel)
-{
-    logFile.open(filename, std::ios::app);  // открытие файла в режиме добавления
-    if (!logFile.is_open()) {
-        std::cerr << "Ошибка открытия файла журнала: " << filename << "\n";
-    }
-}
+// Конструктор
+Logger::Logger(std::shared_ptr<LoggerOutput> output, LogLevel defaultLevel)
+    : output(output), currentLevel(defaultLevel) {}
 
-// Деструктор: закрывает файл
-Logger::~Logger() {
-    if (logFile.is_open()) {
-        logFile.close();
-    }
-}
-
-// Изменение уровня логирования
+// Установка уровня логирования
 void Logger::setLogLevel(LogLevel newLevel) {
     currentLevel = newLevel;
 }
 
-// Запись сообщения в лог
+// Логирование сообщения
 void Logger::log(const std::string& message, LogLevel level) {
-    if (level < currentLevel || !logFile.is_open()) {
-        return;  
+    if (level < currentLevel || !output) {
+        return;
     }
 
-    logFile << "[" << getTimeStamp() << "]"
-            << " [" << levelToString(level) << "] "
-            << message << std::endl;
+    std::ostringstream formatted;
+    formatted << "[" << getTimeStamp() << "]"
+              << " [" << levelToString(level) << "] "
+              << message;
+
+    output->write(formatted.str());
 }
 
-// Получение текущей временной метки
+// Получение текущего времени
 std::string Logger::getTimeStamp() {
     std::time_t now = std::time(nullptr);
     char buffer[32];
@@ -51,4 +43,3 @@ std::string Logger::levelToString(LogLevel level) {
         default: return "UNKNOWN";
     }
 }
-

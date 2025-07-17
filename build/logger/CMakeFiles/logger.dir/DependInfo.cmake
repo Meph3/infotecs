@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/ubuntu/logger_project/logger/file_logger_output.cpp" "logger/CMakeFiles/logger.dir/file_logger_output.cpp.o" "gcc" "logger/CMakeFiles/logger.dir/file_logger_output.cpp.o.d"
   "/home/ubuntu/logger_project/logger/logger.cpp" "logger/CMakeFiles/logger.dir/logger.cpp.o" "gcc" "logger/CMakeFiles/logger.dir/logger.cpp.o.d"
+  "/home/ubuntu/logger_project/logger/socket_logger_output.cpp" "logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o" "gcc" "logger/CMakeFiles/logger.dir/socket_logger_output.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

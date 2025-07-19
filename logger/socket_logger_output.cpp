@@ -1,44 +1,19 @@
 #include "socket_logger_output.hpp"
-#include <iostream>
 #include <cstring>
-#include <unistd.h>
-#include <arpa/inet.h>
 
-SocketLoggerOutput::SocketLoggerOutput(const std::string& ip, int port)
-    : sockfd(-1), connected(false)
-{
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0) {
-        std::cerr << "Ошибка создания сокета\n";
-        return;
-    }
-
-    sockaddr_in serverAddr{};
+SocketLoggerOutput::SocketLoggerOutput(const std::string& address) {
+    sock = socket(AF_INET, SOCK_STREAM, 0);
     serverAddr.sin_family = AF_INET;
-    serverAddr.sin_port = htons(port);
-
-    if (inet_pton(AF_INET, ip.c_str(), &serverAddr.sin_addr) <= 0) {
-        std::cerr << "Неверный IP адрес\n";
-        close(sockfd);
-        return;
-    }
-
-    if (connect(sockfd, (sockaddr*)&serverAddr, sizeof(serverAddr)) < 0) {
-        std::cerr << "Ошибка подключения к серверу\n";
-        close(sockfd);
-        return;
-    }
-
-    connected = true;
+    serverAddr.sin_port = htons(9090);
+    inet_pton(AF_INET, address.c_str(), &serverAddr.sin_addr);
+    connect(sock, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
 }
 
 SocketLoggerOutput::~SocketLoggerOutput() {
-    if (connected) {
-        close(sockfd);
-    }
+    close(sock);
 }
 
 void SocketLoggerOutput::write(const std::string& message) {
-    if (!connected) return;
-    send(sockfd, message.c_str(), message.size(), 0);
+    std::lock_guard<std::mutex> lock(mutex);
+    send(sock, message.c_str(), message.size(), 0);
 }

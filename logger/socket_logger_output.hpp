@@ -1,19 +1,23 @@
 #ifndef SOCKET_LOGGER_OUTPUT_HPP
 #define SOCKET_LOGGER_OUTPUT_HPP
 
-#include "logger.hpp"
+#include "ilogger_output.hpp"
 #include <string>
+#include <mutex>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
 
-class SocketLoggerOutput : public LoggerOutput {
+class SocketLoggerOutput : public ILoggerOutput {
 public:
-    SocketLoggerOutput(const std::string& ip, int port);
+    explicit SocketLoggerOutput(const std::string& address);
     ~SocketLoggerOutput();
-
     void write(const std::string& message) override;
 
 private:
-    int sockfd;
-    bool connected;
+    int sock;
+    struct sockaddr_in serverAddr;
+    std::mutex mutex;
 };
 
 #endif // SOCKET_LOGGER_OUTPUT_HPP

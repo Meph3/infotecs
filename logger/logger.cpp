@@ -1,45 +1,36 @@
 #include "logger.hpp"
+#include <chrono>
 #include <ctime>
-#include <iostream>
 #include <sstream>
+#include <iomanip>
 
-// Конструктор
-Logger::Logger(std::shared_ptr<LoggerOutput> output, LogLevel defaultLevel)
-    : output(output), currentLevel(defaultLevel) {}
+Logger::Logger(const std::string& destination, LogLevel defaultLevel, LoggerOutputType outputType)
+    : currentLevel(defaultLevel) {
+    if (outputType == LoggerOutputType::FILE) {
+        output = std::make_unique<FileLoggerOutput>(destination);
+    } else {
+        output = std::make_unique<SocketLoggerOutput>(destination);
+    }
+}
 
-// Установка уровня логирования
 void Logger::setLogLevel(LogLevel newLevel) {
     currentLevel = newLevel;
 }
 
-// Логирование сообщения
 void Logger::log(const std::string& message, LogLevel level) {
-    if (level < currentLevel || !output) {
-        return;
-    }
+    if (level < currentLevel) return;
 
-    std::ostringstream formatted;
-    formatted << "[" << getTimeStamp() << "]"
-              << " [" << levelToString(level) << "] "
-              << message;
+    auto now = std::chrono::system_clock::now();
+    std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+    std::stringstream ss;
+    ss << "[" << std::put_time(std::localtime(&now_c), "%Y-%m-%d %H:%M:%S") << "] ";
 
-    output->write(formatted.str());
-}
-
-// Получение текущего времени
-std::string Logger::getTimeStamp() {
-    std::time_t now = std::time(nullptr);
-    char buffer[32];
-    std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
-    return buffer;
-}
-
-// Преобразование уровня важности в строку
-std::string Logger::levelToString(LogLevel level) {
     switch (level) {
-        case LogLevel::INFO: return "INFO";
-        case LogLevel::WARNING: return "WARNING";
-        case LogLevel::ERROR: return "ERROR";
-        default: return "UNKNOWN";
+        case LogLevel::INFO: ss << "[INFO] "; break;
+        case LogLevel::WARNING: ss << "[WARNING] "; break;
+        case LogLevel::ERROR: ss << "[ERROR] "; break;
     }
+
+    ss << message;
+    output->write(ss.str());
 }

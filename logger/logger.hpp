@@ -3,34 +3,20 @@
 
 #include <string>
 #include <memory>
+#include "ilogger_output.hpp"
+#include "file_logger_output.hpp"
+#include "socket_logger_output.hpp"
+#include "logger_types.hpp"
 
-// Уровни важности логов
-enum class LogLevel {
-    INFO,
-    WARNING,
-    ERROR
-};
-
-// Абстрактный интерфейс вывода логов
-class LoggerOutput {
-public:
-    virtual ~LoggerOutput() = default;
-    virtual void write(const std::string& message) = 0;
-};
-
-// Основной класс логгера
 class Logger {
 public:
-    Logger(std::shared_ptr<LoggerOutput> output, LogLevel defaultLevel);
+    Logger(const std::string& destination, LogLevel defaultLevel, LoggerOutputType outputType);
     void log(const std::string& message, LogLevel level);
     void setLogLevel(LogLevel newLevel);
 
 private:
     LogLevel currentLevel;
-    std::shared_ptr<LoggerOutput> output;
-
-    std::string getTimeStamp();
-    std::string levelToString(LogLevel level);
+    std::unique_ptr<ILoggerOutput> output;
 };
 
 #endif // LOGGER_HPP

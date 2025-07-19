@@ -1,19 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
-project(logger_project LANGUAGES CXX)
+project(logger_project)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Пользовательская опция: Собирать как shared библиотеку?
-option(BUILD_LOGGER_AS_SHARED "Build logger library as shared (ON) or static (OFF)" OFF)
+option(BUILD_SHARED_LIBS "Build shared library" OFF)
 
-# Устанавливаем флаг для CMake
-if (BUILD_LOGGER_AS_SHARED)
-    set(BUILD_SHARED_LIBS ON)
-else()
-    set(BUILD_SHARED_LIBS OFF)
-endif()
-
-# Добавляем подкаталоги
 add_subdirectory(logger)
 add_subdirectory(app)
+add_executable(logger_tests tests/test_logger.cpp)
+target_link_libraries(logger_tests PRIVATE logger)
+add_subdirectory(monitor)
